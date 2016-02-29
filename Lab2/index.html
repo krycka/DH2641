@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="dinnerplanner.css">
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!--script src="js/bootstrap.3.1.0.min.js"></script-->
+
+
+
   </head>
   <body>
   	<span id="javascriptWarning"><h3>This page needs javascript to function.</h3></span>
@@ -21,8 +29,8 @@
 				HOMELETTE <small>From the best chefs in the world directly into your kitchen</small></h1>
 		</div>
 
-		<div id="home">
-			<div id="homeDescription" class="col-md-5">
+		<div id="start">
+			<div id="startDescription" class="col-md-5">
 				<h3>A Home Dinner Service</h3>
 				<hr>
 				<p>Bacon ipsum dolor amet eu frankfurter deserunt, swine aliquip bacon pork loin id pork chop in pork belly shank do pig ut. Et cupidatat pancetta leberkas. Andouille prosciutto tenderloin tongue ham hock pork do dolore ex magna consectetur nostrud ut ea. Voluptate prosciutto biltong, venison shank incididunt cupidatat tenderloin fugiat cillum.</p>
@@ -39,12 +47,12 @@
 				<div id="sidebarTableHeader" class="tableRow">
 					<span class="pull-left">Dish Name</span><span class="pull-right">Cost</span>
 				</div>
-				<div class="tableRow">
+				<!--div class="tableRow">
 					<span class="pull-left">Pending</span><span class="pull-right">0.00</span>
-				</div>
+				</div-->
 			</div>
 			<hr>
-			<span class="pull-right">SEK 0.00</span><br />
+			<span class="pull-right totPrice"></span><br />
 			<input id="confirmDinnerButton" class="button" type="button" value="Confirm Dinner" />
 		</div>
 	
@@ -56,7 +64,7 @@
 				<input id="searchButton" class="button" type="button" value="search" />
 				<select id="courseType">
 					<option value="starter">Starter</option>
-					<option value="mainCourse">Main</option>
+					<option value="mainDish">Main</option>
 					<option value="dessert">Dessert</option>
 				</select>
 			</div>
@@ -146,7 +154,7 @@
 		<div id="instructions">
 			<div id="overviewHeader" class="col-md-12">
 				<h3>My Dinner: <span class="guestCount">-1</span> people</h3>
-				<input id="editDinner" class="button pull-right" type="button" value="Go back and edit dinner" />
+				<input id="editDinnerInstr" class="button pull-right" type="button" value="Go back and edit dinner" />
 			</div>
 			<div id="starter" class="col-md-12">
 				<img id="starterImage" class="col-md-2" />
@@ -182,21 +190,26 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-    <!--script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script-->
-    <script src="js/bootstrap.3.1.0.min.js"></script>
+
 	<!-- The application JavaScript code -->
-	<script src="js/app.js"></script>
+	
 	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/startView.js"></script>
+	<script src="js/view/sidebarView.js"></script>
 	<script src="js/view/selectDishView.js"></script>
 	<script src="js/view/dishDetailsView.js"></script>
 	<script src="js/view/dinnerOverviewView.js"></script>
 	<script src="js/view/instructionsView.js"></script>
-	<script src="js/view/exampleViewController.js"></script>
+	<script src="js/controller/appController.js"></script>
+	<script src="js/controller/startController.js"></script>
+	<script src="js/controller/sidebarController.js"></script>
+	<script src="js/controller/selectDishController.js"></script>
+	<script src="js/controller/dishDetailsController.js"></script>
+	<script src="js/controller/dinnerOverviewController.js"></script>
+	<script src="js/controller/instructionsController.js"></script>
+
+	<script src="js/app.js"></script>
   </body>
 </html>

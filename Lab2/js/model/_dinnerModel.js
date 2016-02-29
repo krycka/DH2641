@@ -2,52 +2,21 @@
 var DinnerModel = function() {
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
-	var numberOfGuests = 4;
-	var menu = {starter:0, mainDish:0, dessert:0};
-	var activeDishID = 0;
-	var observers = [];
-
-	this.forceUpdate = function(){
-		notifyObservers();
-	}
-
-	this.setActiveDishID = function(id){
-		console.info("DinnerModel.setActiveDishID " + id);
-		activeDishID = id;
-		notifyObservers()
-	} 
-	this.getActiveDishID = function(id){
-		return activeDishID;
-	}
-	
-	// will add new observer to the array
-	this.addObserver = function(observer) {
-		// observers[observers.length] = observer; 		// Faster?
-		console.info("DinnerModel: Adding observer " + observer);
-		observers.push(observer);
-		observer.update();
-	}
-	
-	// will call the update method on all the observers in the array
-	var notifyObservers = function(obj) {
-    	for (var i=0; i < observers.length; i++) {
-    		observers[i].update();
-    	};
-	}
-	
+  var numberOfGuests = 7;
+  var menu = {starter:1, mainCourse:100, dessert:200};
+  this.activeDishID = 100;
 	
 	this.addGuest = function() {
-		this.setNumberOfGuests(numberOfGuests+1);
+		numberOfGuests++;
 	}
 	
 	this.removeGuest = function() {
-		this.setNumberOfGuests(numberOfGuests-1);
+		numberOfGuests--;
 	}
 	
+	//TODO Lab 2
 	this.setNumberOfGuests = function(num) {
-		//TODO Lab 2
 		numberOfGuests = num;
-		notifyObservers();
 	}
 
 	// should return
@@ -60,20 +29,19 @@ var DinnerModel = function() {
 	this.getSelectedDish = function(type) {
 		//TODO Lab 2
 		return this.getDish(menu[type]);
-	}
+  }
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
 		//TODO Lab 2
-		return [this.getDish(menu.starter), this.getDish(menu.mainDish), this.getDish(menu.dessert)];
+		return [this.getDish(menu.starter), this.getDish(menu.mainCourse), this.getDish(menu.dessert)];
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 2
-		return this.getDish(menu.starter).ingredients.concat(this.getDish(menu.mainDish).ingredients).concat(this.getDish(menu.dessert).ingredients);
+		return this.getDish(menu.starter).ingredients.concat(this.getDish(menu.mainCourse).ingredients).concat(this.getDish(menu.dessert).ingredients);
 	}
-	
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
@@ -85,34 +53,21 @@ var DinnerModel = function() {
 		}
 		return totalPrice*numberOfGuests;
 	}
-	
-	
-	this.getPrice = function(dish) {
-	  var cost = 0;
-		for(var i = 0; i < dish.ingredients.length; i++) {
-			cost += dish.ingredients[i].price;
-		}
-		return cost *= numberOfGuests;
-	}
-	
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
 		//TODO Lab 2
-		console.info("DinnerModel.addDishToMenu() id: "+id);
 		menu[this.getDish(id).type] = id;
-		notifyObservers();
 	}
-	//ELIN
+
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		//TODO Lab 2
 		menu[this.getDish(id).type] = 0;
-		notifyObservers();
 	}
 
-	//function that returns all dishes of specific type (i.e. "starter", "mainDish" or "dessert")
+	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type, filter) {
@@ -153,18 +108,6 @@ var DinnerModel = function() {
 	// can sometimes be empty like in the example of eggs where
 	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
 	var dishes = [{
-		'id':0,
-		'name':'pending',
-		'type':'',
-		'image':'',
-		'description':"N/A",
-		'ingredients':[{
-			'name':'N/A',
-			'quantity':0,
-			'unit':'',
-			'price':0
-			}]
-		},{
 		'id':1,
 		'name':'French toast',
 		'type':'starter',
@@ -243,7 +186,7 @@ var DinnerModel = function() {
 		},{
 		'id':100,
 		'name':'Meat balls',
-		'type':'mainDish',
+		'type':'main dish',
 		'image':'meatballs.jpg',
 		'description':"Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.",
 		'ingredients':[{
@@ -305,7 +248,7 @@ var DinnerModel = function() {
 		},{
 		'id':101,
 		'name':'MD 2',
-		'type':'mainDish',
+		'type':'main dish',
 		'image':'bakedbrie.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{
@@ -327,7 +270,7 @@ var DinnerModel = function() {
 		},{
 		'id':102,
 		'name':'MD 3',
-		'type':'mainDish',
+		'type':'main dish',
 		'image':'meatballs.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{
@@ -349,7 +292,7 @@ var DinnerModel = function() {
 		},{
 		'id':103,
 		'name':'MD 4',
-		'type':'mainDish',
+		'type':'main dish',
 		'image':'meatballs.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{

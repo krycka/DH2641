@@ -1,19 +1,41 @@
 //ExampleView Object constructor
-var selectDishView = function (container) {
-	alert("selectDishView");
+var selectDishView = function (container, dinnerModel) {
+	console.info("Loading selectDishView");
 	
-	this.container = $("#selectDishList");
-	
-	this.update = new function() {
-		this.dishes = dinnerModel.getAllDishes($("#courseType").find(":selected").val());
+	var controller = "";
 
-		for (var i=0; i<this.dishes.length; i++) {
-			$("#selectDishList").append("\
+	this.update = function() {
+		var searchText = $("#dishSearchField").val();
+		var courseType = $("#courseType").find(":selected").val();
+
+		if(searchText == "Enter key words")
+			searchText = "";
+
+		var dishes = dinnerModel.getAllDishes(courseType, searchText);
+		if(dishes == false){
+			console.warn("selectDishView.update() No dishes found!")
+		}
+		//var dishes = dinnerModel.getAllDishes("starter");
+
+		// Clear all elements in the list
+		container.find("#selectDishList").html("");
+		// Populate with new dishes
+		for (var i=0; i<dishes.length; i++) {
+			container.find("#selectDishList").append("\
 				<div class=\"dishItem col-md-2\">\
-					<img src=\"images/"+ this.dishes[i].image +"\" />\
-					<p class=\"dishName\">"+ this.dishes[i].name +"</p>\
-					<p class=\"dishDescription\">"+ this.dishes[i].description +"</p>\
+					<span class=\"dishID\" style=\"display: none;\">"+dishes[i].id+"</span>\
+					<img src=\"images/"+ dishes[i].image +"\" />\
+					<p class=\"dishName\">"+ dishes[i].name +"</p>\
+					<p class=\"dishDescription\">"+ dishes[i].description +"</p>\
 				</div>");
 		};
+	};
+
+	this.getContainer = function(){
+		return container;
+	};
+
+	this.setController = function(controller) {
+		this.controller = controller;
 	}
 }
