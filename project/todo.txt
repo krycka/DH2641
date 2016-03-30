@@ -1,0 +1,16 @@
+TODO: 
+
+- Implement ability to remove activities
+- Implement ability to remove days
+- Implement ability to update activities
+- Implement move activity, with drag and drop
+
+- Create method to update the bar showing the distribution of activities
+- Add the "30% break"-line
+
+- Update start and end time, as well as total length
+- Add functionality for adding new activities, form already done
+- Improve design and transitions
+- Bugfixes
+
+And more..

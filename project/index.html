@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agenda Builder</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="agendaBuilder.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!--script src="js/bootstrap.3.1.0.min.js"></script-->
+
+
+
+
+  </head>
+  <body>
+
+  <div id="parkedAct">
+		<input id="createButton" class="button" type="button" value="Create new Activity" />
+    <ul class="actList nav nav-pills nav-stacked">
+      <!--li class="break">120 min<span class="pull-right">Meeting meeting <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li>
+      <li class="presentation">60 min<span class="pull-right">Meeting <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li>
+      <li class="groupwork">40 min<span class="pull-right">Poop meeting <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li>
+      <li class="discussion">3 min<span class="pull-right">Meeting <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li-->
+    </ul>
+  </div>
+  
+
+  <div id="dayContainer">
+    <div id="dayTemplate" class="day">
+      <div class="summary">
+        <table>
+          <tbody>
+            <tr>
+              <td>Start time</td>
+              <td><input type="text" class="startTime" name="starttime"></td>
+            </tr>
+            <tr>
+              <td>End </td>
+              <td class="endTime">[00:00]</td>
+            </tr>
+            <tr>
+              <td><hr></td>
+            </tr>
+            <tr>
+              <td>Total length</td>
+              <td class="totalLength">[00:00]</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <div class="stats">
+          <table>
+            <tbody>
+              <tr><td class="presentation" style="height:25px;"></td></tr>
+              <tr><td class="groupwork" style="height:25px;"></td></tr>
+              <tr><td class="discussion" style="height:25px;"></td></tr>
+              <tr><td class="break" style="height:25px;"></td></tr>
+            </tbody>
+          </table>
+          <div class="line"></div>
+        </div>
+      </div>
+      	<ul class="actList nav nav-pills nav-stacked">
+          <!--li class="break">120 min<span class="pull-right">Meeting meeting <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li>
+            <li class="presentation">60 min<span class="pull-right">presentation <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li>
+          <li class="groupwork">40 min<span class="pull-right">Poop meeting <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li>
+          <li class="discussion">3 min<span class="pull-right">discussion <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></li-->
+        </ul>
+    </div>
+    <div id="addDay" class="button">
+      <br>
+      <br>
+      <br>
+      <br>
+      Add new day <br>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </div>
+  </div>
+  
+  
+  <div id="addActivityForm">
+    <form id="addActivity">
+      <label for="actName">Activity name</label>
+      <input type="text" id="name" name="activityName">
+  
+      <label for="description">Description</label>
+      <input type="text" id="desc" name="description">
+  
+      <label for="length">Length (min)</label>
+      <input type="text" id="length" name="length">
+  
+      <label for="type">Type</label>
+      <select id="type" name="type" class="selectpicker">
+        <option class="presentation" value="presentation" id="0">Presentation</option>
+        <option class="groupwork" value="groupwork" id="1">Group Work</option>
+        <option class="discussion" value="discussion" id="2">Discussion</option>
+        <option class="break" value="break" id="3">Break</option>
+      </select>
+    
+      <input type="button" class="button" value="Create new activity">
+    </form>
+  </div>
+  
+	<!-- The application JavaScript code -->
+	
+	<script src="js/parkedActController.js"></script>
+  <script src="js/parkedActView.js"></script>
+  <script src="js/dayContainerController.js"></script>
+  <script src="js/dayContainerView.js"></script>
+  <script src="js/dayController.js"></script>
+  <script src="js/dayView.js"></script>
+  <script src="js/addActivityController.js"></script>
+  <script src="js/agendaBuilderModel.js"></script>
+	<script src="js/app.js"></script>
+  </body>
+</html>
